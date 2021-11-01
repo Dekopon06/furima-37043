@@ -30,11 +30,11 @@ Things you may want to cover:
 | Column       | Type       | Options                        |
 | ------------ | ---------- | ------------------------------ |
 | nickname     | string     | null: false                    |
-| encrypted    | text       | null: false                    |
-| email        | text       | null: false, uniqueness: true  |
-| first_name   | text       | null: false                    |
-| family_name  | text       | null: false                    |
-| birthday     | text       | null: false                    |
+| encrypted    | string     | null: false                    |
+| email        | string     | null: false, uniqueness: true  |
+| first_name   | string     | null: false                    |
+| family_name  | string     | null: false                    |
+| birthday     | string     | null: false                    |
 
 
 ## items テーブル
@@ -43,11 +43,11 @@ Things you may want to cover:
 | ------------ | ---------- | ------------------------------ |
 | item_name    | string     | null: false                    |
 | explain      | text       | null: false                    |
-| category     | text       | null: false                    |
-| detail       | text       | null: false                    |
-| profit       | text       | null: false                    |
-| commission   | text       | null: false                    |
-| price        | text       | null: false                    |
+| category     | string     | null: false                    |
+| detail       | string     | null: false                    |
+| profit       | string     | null: false                    |
+| commission   | string     | null: false                    |
+| price        | string     | null: false                    |
 | user         | references | null: false, foreign_key: true |
 
 
