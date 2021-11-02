@@ -42,7 +42,7 @@ Things you may want to cover:
 
 has_many :items
 has_many :purchases
-has_one :shippings
+
 
 ## items テーブル
 
@@ -55,15 +55,12 @@ has_one :shippings
 | charge_id     | integer    | null: false                    |
 | prefecture_id | integer    | null: false                    |
 | shipp_id      | integer    | null: false                    |
-| profit        | integer    | null: false                    |
-| commission    | integer    | null: false                    |
 | price         | integer    | null: false                    |
 | user          | references | null: false, foreign_key: true |
 
 ## Association
 belongs_to :user
 has_one :shipping
-has_one :purchase
 
 
 
@@ -71,19 +68,17 @@ has_one :purchase
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| code          | integer    | null: false                    |
+| code          | string     | null: false                    |
 | prefecture_id | integer    | null: false                    |
 | town          | string     | null: false                    |
-| address       | text       | null: false                    |
-| building      | text       |                                |
-| telephone     | integer    | null: false                    |
+| address       | string     | null: false                    |
+| building      | string     |                                |
+| telephone     | string     | null: false                    |
 | purchase      | references | null: false, foreign_key: true |
 
 
 ## Association
-belongs_to :user
-belongs_to :item
-has_one :purchase
+belongs_to :purchase
 
 
 ## purchases テーブル
@@ -97,4 +92,4 @@ has_one :purchase
 ## Association
 belongs_to :user
 belongs_to :item
-belongs_to :shipping
+has_one :shipping
