@@ -8,8 +8,8 @@ class User < ApplicationRecord
   has_many :purchases
 
   # バリデーションの設定
+  validates :encrypted_password,:password_confirmation,length:{minimum:6},format:{with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{7,}/}, presence: true
   validates :nickname, presence: true
-  validates :encrypted_password, presence: true
   validates :email, presence: true, uniqueness: true 
   validates :first_name, presence: true
   validates :family_name, presence: true
