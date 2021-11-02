@@ -60,7 +60,7 @@ has_many :purchases
 
 ## Association
 belongs_to :user
-has_one :shipping
+has_one :purchase
 
 
 
