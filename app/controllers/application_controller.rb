@@ -4,15 +4,11 @@ class ApplicationController < ActionController::Base
   # before_action :authenticate_user!, only: [:new, :create, :edit, :destroy]
 
   private
+
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname])
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:encrypted_password])
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:email])
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name])
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:family_name])
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_furigana])
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:family_furigana])
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:birthday])
+    devise_parameter_sanitizer.permit(
+      :sign_up, keys: [:nickname, :email, :encrypted_password, :first_name, :family_name, :first_name, :family_furigana, :first_furigana, :birthday]
+    )
   end
 
   def basic_auth
