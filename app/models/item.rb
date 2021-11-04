@@ -13,15 +13,16 @@ class Item < ApplicationRecord
 
 
   # バリデーションの設定
+  validates :image, presence: true
   validates :item_name, presence: true
   validates :explain, presence: true
   validates :category_id, presence: true
   validates :detail_id, presence: true
-  validates :change_id, presence: true
+  validates :charge_id, presence: true
   validates :prefecture_id, presence: true
   validates :shipp_id, presence: true
-  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }, format: { with: /\A[0-9]+\z/ }, merge(user_id: current_user.id)
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }, format: { with: /\A[0-9]+\z/ }
 
   #ジャンルの選択が「--」の時は保存できないようにする
-  validates :category_id, numericality: { other_than: 1 }
+  validates :category_id, :detail_id, :charge_id, :prefecture_id, :shipp_id,numericality: { other_than: 0 }
 end
