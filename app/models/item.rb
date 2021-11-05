@@ -3,14 +3,12 @@ class Item < ApplicationRecord
   has_one_attached :image
   # has_one :purchase
 
-  include ActiveHash::Associations
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :detail
   belongs_to :charge
   belongs_to :shipp
   belongs_to :prefecture
-
 
   # バリデーションの設定
   validates :image, presence: true
