@@ -1,15 +1,15 @@
 class Item < ApplicationRecord
   belongs_to :user
-
   has_one_attached :image
-# has_one :purchase
+  # has_one :purchase
 
   include ActiveHash::Associations
-  has_many  :categorys
-  has_many  :details
-  has_many  :changes
-  has_many  :shipps
-  has_many  :prefectures 
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :category
+  belongs_to :detail
+  belongs_to :charge
+  belongs_to :shipp
+  belongs_to :prefecture
 
 
   # バリデーションの設定

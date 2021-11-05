@@ -1,5 +1,5 @@
 class Shipp < ActiveHash::Base
-  extend ActiveHash::Associations::ActiveRecordExtensions
+
   
   self.data = [
     { id: 0, name: '--' },  
@@ -9,6 +9,6 @@ class Shipp < ActiveHash::Base
   ]
 
   include ActiveHash::Associations
-  belongs_to :item
+  has_many :items
 
 end

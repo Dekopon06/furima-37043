@@ -1,15 +1,11 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!, only: [ :new ]
 
   def index
   end
 
   def new
-     @item = Item.order("created_at DESC")
      @items = Item.new
-   unless user_signed_in? && current_user.id
-     redirect_to  new_user_registration_path
-   end
-
   end
 
   def create
@@ -17,7 +13,7 @@ class ItemsController < ApplicationController
     if @items.save
       redirect_to root_path
     else
-      render :new
+      render  :new
     end
   end
 
