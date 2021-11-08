@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [ :new, :edit, :destroy]
   before_action :set_message, only: [:show, :edit, :update, :destroy]
+
   def set_message
     @item = Item.find(params[:id])
   end
@@ -23,7 +24,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-
   end
 
   def edit

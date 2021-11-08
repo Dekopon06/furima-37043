@@ -37,7 +37,7 @@
    <%# 出品者とユーザーが異なる場合 %>
     <% elsif current_user.id || @item.user_id %>
     <%#且つ 商品が売れていない場合 %>
-    <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
+    <%= link_to "購入画面に進む", item_purchases_path(@item.id) ,class:"item-red-btn"%>
     <% end %>
 
    <% end %>
