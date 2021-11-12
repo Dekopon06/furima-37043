@@ -1,6 +1,6 @@
 class Order
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :code, :town, :address, :building, :telephone, :prefecture_id
+  attr_accessor :user_id, :item_id, :code, :town, :address, :building, :telephone, :prefecture_id, :token
 
   # ここにバリデーションの処理を書く
   with_options presence: true do
@@ -11,6 +11,7 @@ class Order
    validates :telephone
    validates :prefecture_id
    validates :purchase_id, numericality: { other_than: 0 }
+   validates :token
   end
 
   # 各テーブルにデータを保存する処理を書く

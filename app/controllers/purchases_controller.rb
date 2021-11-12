@@ -9,13 +9,14 @@ class PurchasesController < ApplicationController
  end
 
  def create
+  # binding.pry
    @purchase = Order.new(purchase_params)
-  #  @shipping = Order.new(purchase_params)
-  #  Shipping.create(shipping_params)
+   @items = Item.find(params[:item_id])
+   pay_item
 
    if @purchase.save
+
    redirect_to root_path
-     
    else
     render :index
    end
@@ -26,7 +27,18 @@ class PurchasesController < ApplicationController
  private
 
  def purchase_params
-  params.require(:order).permit(:code, :prefecture_id, :town, :address, :building, :telephone).merge(user_id: current_user.id, item_id: params[:item_id])
+  params.require(:order).permit(:code, :prefecture_id, :town, :address, :building, :telephone).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
  end
+
+ def pay_item
+   Payjp.api_key = "sk_test_d6bf320d6656b5a4d8f5f9c4" 
+  #  Payjp.setPublicKey("pk_test_d33ffffaa0f370b62eb49dab");
+   Payjp::Charge.create(
+   amount: @items.price,  # 商品の値段
+   card: purchase_params[:token],    # カードトークン
+   currency: 'jpy'                 # 通貨の種類（日本円）
+   )
+ end
+
 
 end
