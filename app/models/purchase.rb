@@ -4,6 +4,6 @@ class Purchase < ApplicationRecord
   has_one :shipping
 
   # バリデーションの設定
-  # validates :user_id, presence: true
-  # validates :item_id, presence: true
+
+   
 end

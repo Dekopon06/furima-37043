@@ -12,13 +12,14 @@ class PurchasesController < ApplicationController
   # binding.pry
    @purchase = Order.new(purchase_params)
    @items = Item.find(params[:item_id])
-   pay_item
 
-   if @purchase.save
 
-   redirect_to root_path
+   if @purchase.valid?
+      @purchase.save
+      pay_item
+      redirect_to root_path
    else
-    render :index
+      render :index
    end
  end
    
@@ -32,7 +33,6 @@ class PurchasesController < ApplicationController
 
  def pay_item
    Payjp.api_key = "sk_test_d6bf320d6656b5a4d8f5f9c4" 
-  #  Payjp.setPublicKey("pk_test_d33ffffaa0f370b62eb49dab");
    Payjp::Charge.create(
    amount: @items.price,  # 商品の値段
    card: purchase_params[:token],    # カードトークン
