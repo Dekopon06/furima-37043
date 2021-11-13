@@ -24,6 +24,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @items = Item.order("created_at DESC")
   end
 
   def edit

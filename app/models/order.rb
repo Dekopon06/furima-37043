@@ -1,6 +1,6 @@
 class Order
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :code, :town, :address, :building, :telephone, :token, :prefecture_id  #:prefecture_id,
+  attr_accessor :user_id, :item_id, :code, :town, :address, :building, :telephone, :token, :prefecture_id
 
 
   validates :item_id, presence: true
