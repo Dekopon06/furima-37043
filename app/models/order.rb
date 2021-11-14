@@ -7,7 +7,7 @@ class Order
   validates :code, presence: true, format:{with: /\A\d{3}[-]\d{4}+\z/}
   validates :address, presence: true
   validates :town, presence: true
-  validates :telephone, presence: true, format:{with: /\A\d{10,11}+\z/}
+  validates :telephone, presence: true, format:{with: /\A((0(\d{1}[-(]?\d{4}|\d{2}[-(]?\d{3}|\d{3}[-(]?\d{2}|\d{4}[-(]?\d{1}|[5789]0[-(]?\d{4})[-)]?)|\d{1,4}\-?)\d{4}\z/}
   validates :prefecture_id, numericality: { other_than: 0 }
   validates :token, presence: true
   #  validates :purchase_id, numericality: { other_than: 0 }, presence: true
