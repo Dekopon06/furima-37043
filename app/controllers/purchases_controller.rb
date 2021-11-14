@@ -8,13 +8,9 @@ class PurchasesController < ApplicationController
    if current_user == @items.user || @items.purchase != nil
       redirect_to root_path
    end
-
-    # @purchases = Purchase.includes(:item).find(params[:id])
-    # @user = User.includes(:prototypes).find(params[:id])
  end
 
  def create
-  # binding.pry
    @purchase = Order.new(purchase_params)
    @items = Item.find(params[:item_id])
 

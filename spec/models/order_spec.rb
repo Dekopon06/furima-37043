@@ -9,10 +9,18 @@ RSpec.describe Order, type: :model do
   end
 
  describe '商品出品機能' do
+
   context '内容に問題ない場合' do
+
     it "必要な要素が全てあれば保存ができること" do
       expect(@order).to be_valid
     end
+
+    it "建物名が抜けていても登録できること" do
+      @order.building = ''
+      expect(@order).to be_valid
+    end
+
   end
 
   context '内容に問題がある場合' do
@@ -69,6 +77,24 @@ RSpec.describe Order, type: :model do
       @order.telephone = '000000000'
       @order.valid?
       expect(@order.errors.full_messages).to include "Telephone is invalid"
+    end
+
+    it "電話番号は、英数混合では登録できないこと" do
+      @order.telephone = 'a0A00000000'
+      @order.valid?
+      expect(@order.errors.full_messages).to include "Telephone is invalid"
+    end
+
+    it "userが紐付いていないと登録できない" do
+      @order.user_id = nil
+      @order.valid?
+      expect(@order.errors.full_messages).to include("User can't be blank")
+    end
+
+    it "itemが紐付いていないと登録できない" do
+      @order.item_id = nil
+      @order.valid?
+      expect(@order.errors.full_messages).to include("Item can't be blank")
     end
 
   end
