@@ -3,7 +3,7 @@ class PurchasesController < ApplicationController
   
  def index
     @purchase = Order.new
-    @items = Item.find(params[:item_id])
+    item_info 
     
    if current_user == @items.user || @items.purchase != nil
       redirect_to root_path
@@ -12,7 +12,7 @@ class PurchasesController < ApplicationController
 
  def create
    @purchase = Order.new(purchase_params)
-   @items = Item.find(params[:item_id])
+   item_info 
 
 
    if @purchase.valid?
@@ -27,6 +27,10 @@ class PurchasesController < ApplicationController
 
 
  private
+
+ def item_info
+  @items = Item.find(params[:item_id])
+ end
 
  def purchase_params
   params.require(:order).permit(:code, :prefecture_id, :town, :address, :building, :telephone).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
