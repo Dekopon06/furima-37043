@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [ :new, :edit, :destroy]
   before_action :set_message, only: [:show, :edit, :update, :destroy]
+
   def set_message
     @item = Item.find(params[:id])
   end
@@ -23,15 +24,16 @@ class ItemsController < ApplicationController
   end
 
   def show
-
+    @items = Item.order("created_at DESC")
   end
 
   def edit
-
-
-   unless user_signed_in? && current_user.id == @item.user_id
-      redirect_to root_path
+   if current_user.id == @item.user_id && @item.purchase == nil
+     
+   else
+     redirect_to root_path
    end
+   
 
   end
 
@@ -47,7 +49,7 @@ class ItemsController < ApplicationController
 
 
   def destroy
-   if user_signed_in? && current_user.id || @item.user_id
+   if user_signed_in? && current_user.id || @item.user_id || @item.purchase != nil
       if @item.destroy
        redirect_to root_path
       end
@@ -59,5 +61,7 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:item_name, :image, :explain, :category_id, :detail_id, :charge_id, :prefecture_id, :shipp_id, :price ).merge(user_id: current_user.id)
   end
+
+  
 
 end
