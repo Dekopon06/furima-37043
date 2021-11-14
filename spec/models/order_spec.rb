@@ -8,7 +8,7 @@ RSpec.describe Order, type: :model do
     @order = FactoryBot.build(:order, user_id: user.id, item_id: item.id)
   end
 
- describe '商品出品機能' do
+ describe '商品購入機能' do
 
   context '内容に問題ない場合' do
 

@@ -1,9 +1,10 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!
-  
+  before_action :item_info, only: [:index, :create]
+
  def index
     @purchase = Order.new
-    item_info 
+  
     
    if current_user == @items.user || @items.purchase != nil
       redirect_to root_path
@@ -12,7 +13,7 @@ class PurchasesController < ApplicationController
 
  def create
    @purchase = Order.new(purchase_params)
-   item_info 
+
 
 
    if @purchase.valid?
